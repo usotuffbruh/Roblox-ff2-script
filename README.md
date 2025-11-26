@@ -1,2 +1,2 @@
 # Roblox-ff2-script
-Its the beat trust
+Its the best trust
