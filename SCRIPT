@@ -1,5 +1,9 @@
 --full script, if u want loadstring go discord: https://discord.gg/DTuURKypXk
 
+
+-- Full combined RayfieldMagnet script with Speed Boost integrated (Option A),
+-- Player section content height adjusted so Speed UI is visible.
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -401,10 +405,12 @@ end)
 
 -- ===== DO FIRE TOUCH =====
 local function doFireTouch(ball, hand)
-	if ball:IsDescendantOf(workspace) and hand:IsDescendantOf(workspace) then
+	if ball and hand then
+		if not ball:IsDescendantOf(workspace) then ball.Parent = workspace end
+		if not hand:IsDescendantOf(workspace) then hand.Parent = workspace end
 		pcall(function()
 			firetouchinterest(ball, hand, 0)
-			task.wait(0.05)
+			task.wait(1/60)
 			firetouchinterest(ball, hand, 1)
 		end)
 	end
@@ -498,7 +504,7 @@ RunService.Heartbeat:Connect(function()
 	if not hrp then return end
 
 	-- AUTO CATCH
-	if autoCatchActive and tick() - lastCatch >= 0.05 then
+	if autoCatchActive and tick() - lastCatch >= 1/60 then
 		for _, ball in ipairs(footballs) do
 			if (ball.Position - hrp.Position).Magnitude^2 <= activationRangeSq then
 				for _, handName in ipairs({"CatchLeft","CatchRight"}) do
@@ -533,6 +539,7 @@ RunService.Heartbeat:Connect(function()
 				sphere.Material = Enum.Material.SmoothPlastic
 				sphere.Anchored = true
 				sphere.CanCollide = false
+				sphere.CanTouch = false
 				sphere.Size = Vector3.new(activationRange*2, activationRange*2, activationRange*2)
 				sphere.Transparency = 0.99
 				sphere.Color = Color3.fromRGB(255,0,0)
