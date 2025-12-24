@@ -302,6 +302,7 @@ local function toggleSection(header, content)
 	header.Parent.Size = UDim2.new(1, 0, 0, 34)
 	header.MouseButton1Click:Connect(function()
 		open = not open
+		content.Visible = open
 		if open then
 			if header == playerHeader then
 				header.Parent.Size = UDim2.new(1, 0, 0, 120)
