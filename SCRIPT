@@ -66,8 +66,12 @@ card.Parent = screenGui
 card.ClipsDescendants = false
 Instance.new("UICorner", card).CornerRadius = UDim.new(0, 8)
 local cardStroke = Instance.new("UIStroke", card)
-cardStroke.Color = Color3.fromRGB(45, 45, 45)
-cardStroke.Thickness = 1
+cardStroke.Color = Color3.fromRGB(255, 255, 255)
+cardStroke.Thickness = 2.5
+local cardGradient = Instance.new("UIGradient", card)
+cardGradient.Color = ColorSequence.new(Color3.fromRGB(185, 0, 0), Color3.fromRGB(0, 143, 0))
+local cardstrokeGradient = Instance.new("UIGradient", cardStroke)
+cardstrokeGradient.Color = ColorSequence.new(Color3.fromRGB(185, 0, 0), Color3.fromRGB(0, 143, 0))
 
 -- Title Bar
 local titleBar = Instance.new("Frame")
@@ -77,6 +81,8 @@ titleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 titleBar.BorderSizePixel = 0
 titleBar.Parent = card
 Instance.new("UICorner", titleBar).CornerRadius = UDim.new(0, 8)
+local titleGradient = Instance.new("UIGradient", titleBar)
+titleGradient.Color = ColorSequence.new(Color3.fromRGB(185, 0, 0), Color3.fromRGB(0, 143, 0))
 
 local titleLabel = Instance.new("TextLabel", titleBar)
 titleLabel.Size = UDim2.new(1, -112, 1, 0)
@@ -85,7 +91,7 @@ titleLabel.BackgroundTransparency = 1
 titleLabel.Font = Enum.Font.GothamBold
 titleLabel.TextSize = 18
 titleLabel.TextColor3 = Color3.fromRGB(230, 230, 230)
-titleLabel.Text = "0UncStatus - FF2 Script"
+titleLabel.Text = "🎄🎅 0UncStatus - FF2 Script 🎅🎄"
 titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 titleLabel.TextYAlignment = Enum.TextYAlignment.Center
 
@@ -127,20 +133,17 @@ local function MakeSection(parent, titleText)
 	section.LayoutOrder = 1
 
 	local header = Instance.new("TextButton", section)
-	header.Size = UDim2.new(1, 0, 0, 28)
+	header.Size = UDim2.new(0.933, 0, 0, 28)
 	header.Position = UDim2.new(0, 12, 0, 6)
-	header.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	header.BackgroundColor3 = Color3.fromRGB(67, 0, 0)
 	header.BorderSizePixel = 0
 	header.Text = titleText
-	header.Font = Enum.Font.JosefinSans
+	header.Font = Enum.Font.GothamBold
 	header.TextSize = 14
-	header.TextColor3 = Color3.fromRGB(230, 230, 230)
+	header.TextColor3 = Color3.fromRGB(230, 230, 2730)
 	header.AutoButtonColor = true
 	header.TextXAlignment = Enum.TextXAlignment.Left
 	Instance.new("UICorner", header).CornerRadius = UDim.new(0, 6)
-	local headerStroke = Instance.new("UIStroke", header)
-	headerStroke.Color = Color3.fromRGB(45, 45, 45)
-	headerStroke.Thickness = 1
 
 	local content = Instance.new("Frame", section)
 	-- default content size (single row) — caller may resize
@@ -148,6 +151,9 @@ local function MakeSection(parent, titleText)
 	content.Position = UDim2.new(0, 12, 0, 34)
 	content.BackgroundTransparency = 1
 	content.ClipsDescendants = true
+	
+	
+	
 
 	return section, header, content
 end
@@ -160,7 +166,7 @@ magnetContent.Size = UDim2.new(1, -24, 0, 34+25)
 local autoCatchBtn = Instance.new("TextButton", magnetContent)
 autoCatchBtn.Size = UDim2.new(0, 150, 0, 36)
 autoCatchBtn.Position = UDim2.new(0, 160, 0, 12)
-autoCatchBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+autoCatchBtn.BackgroundColor3 = Color3.fromRGB(54, 0, 0)
 autoCatchBtn.BorderSizePixel = 0
 autoCatchBtn.Font = Enum.Font.GothamBold
 autoCatchBtn.TextSize = 20
@@ -183,7 +189,7 @@ numLabel.Text = "Activation Range"
 local inputBox = Instance.new("TextBox", magnetContent)
 inputBox.Size = UDim2.new(0, 60, 0, 26)
 inputBox.Position = UDim2.new(0, 50, 0, 26)
-inputBox.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+inputBox.BackgroundColor3 = Color3.fromRGB(24, 76, 36)
 inputBox.BorderSizePixel = 0
 inputBox.PlaceholderText = "3-10"
 inputBox.Font = Enum.Font.JosefinSans
@@ -203,7 +209,7 @@ playerContent.Size = UDim2.new(1, -24, 0, 92)
 local jumpToggleBtn = Instance.new("TextButton", playerContent)
 jumpToggleBtn.Size = UDim2.new(0, 150, 0, 36)
 jumpToggleBtn.Position = UDim2.new(0, 0, 0, 4)
-jumpToggleBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+jumpToggleBtn.BackgroundColor3 = Color3.fromRGB(54, 0, 0)
 jumpToggleBtn.BorderSizePixel = 0
 jumpToggleBtn.Font = Enum.Font.GothamBold
 jumpToggleBtn.TextSize = 20
@@ -225,7 +231,7 @@ jumpNumLabel.Text = "Jump Power"
 local jumpInputBox = Instance.new("TextBox", playerContent)
 jumpInputBox.Size = UDim2.new(0, 60, 0, 26)
 jumpInputBox.Position = UDim2.new(0, 162, 0, 26)
-jumpInputBox.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+jumpInputBox.BackgroundColor3 = Color3.fromRGB(24, 76, 36)
 jumpInputBox.BorderSizePixel = 0
 jumpInputBox.PlaceholderText = "30-100"
 jumpInputBox.Font = Enum.Font.JosefinSans
@@ -240,7 +246,7 @@ Instance.new("UICorner", jumpInputBox).CornerRadius = UDim.new(0, 6)
 local speedBoostBtn = Instance.new("TextButton", playerContent)
 speedBoostBtn.Size = UDim2.new(0, 150, 0, 36)
 speedBoostBtn.Position = UDim2.new(0, 0, 0, 46)
-speedBoostBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+speedBoostBtn.BackgroundColor3 = Color3.fromRGB(54, 0, 0)
 speedBoostBtn.BorderSizePixel = 0
 speedBoostBtn.Font = Enum.Font.GothamBold
 speedBoostBtn.TextSize = 20
@@ -262,7 +268,7 @@ speedNumLabel.Text = "Boost Amount (1–3)"
 local speedInputBox = Instance.new("TextBox", playerContent)
 speedInputBox.Size = UDim2.new(0, 60, 0, 26)
 speedInputBox.Position = UDim2.new(0, 162, 0, 66)
-speedInputBox.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+speedInputBox.BackgroundColor3 = Color3.fromRGB(24, 76, 36)
 speedInputBox.BorderSizePixel = 0
 speedInputBox.Font = Enum.Font.JosefinSans
 speedInputBox.TextSize = 18
@@ -279,7 +285,7 @@ espSection.LayoutOrder = 3
 local hitboxToggleBtn = Instance.new("TextButton", espContent)
 hitboxToggleBtn.Size = UDim2.new(0, 150, 0, 36)
 hitboxToggleBtn.Position = UDim2.new(0, 0, 0, 4)
-hitboxToggleBtn.BackgroundColor3 = Color3.fromRGB(180, 50, 50)
+hitboxToggleBtn.BackgroundColor3 = Color3.fromRGB(54, 0, 0)
 hitboxToggleBtn.BorderSizePixel = 0
 hitboxToggleBtn.Font = Enum.Font.GothamBold
 hitboxToggleBtn.TextSize = 20
@@ -296,7 +302,6 @@ local function toggleSection(header, content)
 	header.Parent.Size = UDim2.new(1, 0, 0, 34)
 	header.MouseButton1Click:Connect(function()
 		open = not open
-		content.Visible = open
 		if open then
 			if header == playerHeader then
 				header.Parent.Size = UDim2.new(1, 0, 0, 120)
@@ -396,6 +401,7 @@ local function updateFootballs()
 		end
 	end
 end
+
 task.spawn(function()
 	while true do
 		updateFootballs()
@@ -406,8 +412,12 @@ end)
 -- ===== DO FIRE TOUCH =====
 local function doFireTouch(ball, hand)
 	if ball and hand then
-		if not ball:IsDescendantOf(workspace) then ball.Parent = workspace end
-		if not hand:IsDescendantOf(workspace) then hand.Parent = workspace end
+		if not ball:IsDescendantOf(workspace) then 
+			ball.Parent = workspace 
+		end
+		if not hand:IsDescendantOf(workspace) then 
+			hand.Parent = workspace 
+		end
 		pcall(function()
 			firetouchinterest(ball, hand, 0)
 			task.wait(1/60)
@@ -416,25 +426,26 @@ local function doFireTouch(ball, hand)
 	end
 end
 
+
 -- ===== TOGGLES =====
 
 autoCatchBtn.MouseButton1Click:Connect(function()
 	autoCatchActive = not autoCatchActive
 	autoCatchBtn.Text = autoCatchActive and "MS ON" or "MS OFF"
-	autoCatchBtn.BackgroundColor3 = autoCatchActive and Color3.fromRGB(50,180,50) or Color3.fromRGB(180,50,50)
+	autoCatchBtn.BackgroundColor3 = autoCatchActive and Color3.fromRGB(24, 76, 36) or Color3.fromRGB(67, 0, 0)
 end)
 
 jumpToggleBtn.MouseButton1Click:Connect(function()
 	jumpPowerActive = not jumpPowerActive
 	jumpToggleBtn.Text = jumpPowerActive and "Jump Power ON" or "Jump Power OFF"
-	jumpToggleBtn.BackgroundColor3 = jumpPowerActive and Color3.fromRGB(50,180,50) or Color3.fromRGB(180,50,50)
+	jumpToggleBtn.BackgroundColor3 = jumpPowerActive and Color3.fromRGB(24, 76, 36) or Color3.fromRGB(67, 0, 0)
 end)
 
 -- ===== SPEED BOOST TOGGLE & INPUT (ADDED) =====
 speedBoostBtn.MouseButton1Click:Connect(function()
 	speedBoostActive = not speedBoostActive
 	speedBoostBtn.Text = speedBoostActive and "Speed Boost ON" or "Speed Boost OFF"
-	speedBoostBtn.BackgroundColor3 = speedBoostActive and Color3.fromRGB(50,180,50) or Color3.fromRGB(180,50,50)
+	speedBoostBtn.BackgroundColor3 = speedBoostActive and Color3.fromRGB(24, 76, 36) or Color3.fromRGB(67, 0, 0)
 end)
 
 speedInputBox.FocusLost:Connect(function()
@@ -449,7 +460,7 @@ end)
 hitboxToggleBtn.MouseButton1Click:Connect(function()
 	hitboxVisualActive = not hitboxVisualActive
 	hitboxToggleBtn.Text = hitboxVisualActive and "Hitbox Visual ON" or "Hitbox Visual OFF"
-	hitboxToggleBtn.BackgroundColor3 = hitboxVisualActive and Color3.fromRGB(50,180,50) or Color3.fromRGB(180,50,50)
+	hitboxToggleBtn.BackgroundColor3 = hitboxVisualActive and Color3.fromRGB(24, 76, 36) or Color3.fromRGB(67, 0, 0)
 end)
 
 inputBox.FocusLost:Connect(function(enterPressed)
@@ -498,17 +509,28 @@ local function fixAnimationSpeed()
 		end
 	end
 end
+local currentrot = cardstrokeGradient.Rotation
+local TweenService = game:GetService("TweenService")
+local TweenInformation = TweenInfo.new(2, Enum.EasingStyle.Linear,Enum.EasingDirection.In,-1,false) 
+local Goal = {Rotation = currentrot + 360}
+local Tween = TweenService:Create(cardstrokeGradient, TweenInformation, Goal) 
+local Tween2 = TweenService:Create(titleGradient, TweenInformation, Goal) 
+local Tween3 = TweenService:Create(cardGradient, TweenInformation, Goal)
+
+Tween:Play()
+Tween2:Play()
+Tween3:Play()
 
 -- ===== HEARTBEAT LOOP =====
 RunService.Heartbeat:Connect(function()
 	if not hrp then return end
-
+	
 	-- AUTO CATCH
 	if autoCatchActive and tick() - lastCatch >= 1/60 then
 		for _, ball in ipairs(footballs) do
 			if (ball.Position - hrp.Position).Magnitude^2 <= activationRangeSq then
-				for _, handName in ipairs({"CatchLeft","CatchRight"}) do
-					local hand = player.Character and player.Character:FindFirstChild(handName)
+				for _, handName in ipairs({"CatchL","CatchR"}) do
+					local hand = player.Character:FindFirstChild(handName)
 					if hand then
 						doFireTouch(ball, hand)
 					end
