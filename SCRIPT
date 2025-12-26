@@ -20,14 +20,14 @@ end
 
 -- ===== VARIABLES =====
 local magnetActive = false
-local activationRange = 10
+local activationRange = 20
 local activationRangeSq = activationRange^2
 local teleportSpeed = 1.5
 
 local jumpPowerActive = false
 local jumpBoostForce = 50
-local jumpBoostForceMin = 30
-local jumpBoostForceMax = 100
+local jumpBoostForceMin = 50
+local jumpBoostForceMax = 65
 
 local hitboxVisualActive = false
 local autoCatchActive = false
@@ -191,7 +191,7 @@ inputBox.Size = UDim2.new(0, 60, 0, 26)
 inputBox.Position = UDim2.new(0, 50, 0, 26)
 inputBox.BackgroundColor3 = Color3.fromRGB(24, 76, 36)
 inputBox.BorderSizePixel = 0
-inputBox.PlaceholderText = "3-10"
+inputBox.PlaceholderText = "3-20"
 inputBox.Font = Enum.Font.JosefinSans
 inputBox.TextSize = 18
 inputBox.TextColor3 = Color3.fromRGB(230, 230, 230)
@@ -414,16 +414,17 @@ end)
 local function doFireTouch(ball, hand)
 	if ball and hand then
 		if not ball:IsDescendantOf(workspace) then 
-			ball.Parent = workspace 
+			print("nah")
+			return
 		end
 		if not hand:IsDescendantOf(workspace) then 
-			hand.Parent = workspace 
+			print("nah")
+			return
 		end
-		pcall(function()
-			firetouchinterest(ball, hand, 0)
-			task.wait(1/60)
-			firetouchinterest(ball, hand, 1)
-		end)
+		print("shouldcatch")
+		firetouchinterest(ball, hand, 0)
+		task.wait(1/60)
+		firetouchinterest(ball, hand, 1)
 	end
 end
 
@@ -467,7 +468,7 @@ end)
 inputBox.FocusLost:Connect(function(enterPressed)
 	local value = tonumber(inputBox.Text)
 	if value then
-		activationRange = clamp(value, 3, 10)
+		activationRange = clamp(value, 3, 20)
 		activationRangeSq = activationRange^2
 		inputBox.Text = tostring(activationRange)
 	else
@@ -530,6 +531,7 @@ RunService.Heartbeat:Connect(function()
 	if autoCatchActive and tick() - lastCatch >= 1/60 then
 		for _, ball in ipairs(footballs) do
 			if (ball.Position - hrp.Position).Magnitude^2 <= activationRangeSq then
+				print("inrange")
 				for _, handName in ipairs({"CatchL","CatchR"}) do
 					local hand = player.Character:FindFirstChild(handName)
 					if hand then
