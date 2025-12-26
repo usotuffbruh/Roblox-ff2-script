@@ -20,7 +20,7 @@ end
 
 -- ===== VARIABLES =====
 local magnetActive = false
-local activationRange = 20
+local activationRange = 10
 local activationRangeSq = activationRange^2
 local teleportSpeed = 1.5
 
@@ -468,7 +468,7 @@ end)
 inputBox.FocusLost:Connect(function(enterPressed)
 	local value = tonumber(inputBox.Text)
 	if value then
-		activationRange = clamp(value, 3, 20)
+		activationRange = clamp(value, 3, 10)
 		activationRangeSq = activationRange^2
 		inputBox.Text = tostring(activationRange)
 	else
